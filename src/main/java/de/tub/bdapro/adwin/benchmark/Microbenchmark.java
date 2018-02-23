@@ -4,7 +4,7 @@ package de.tub.bdapro.adwin.benchmark;
 import de.tub.bdapro.adwin.ADWINInterface;
 import de.tub.bdapro.adwin.ADWINWrapper;
 import de.tub.bdapro.adwin.ADWINWrapperOriginal;
-import de.tub.bdapro.adwin.SnapshotThreadExecuterADWINWrapper;
+import de.tub.bdapro.adwin.SnapshotThreadExecutorADWINWrapper;
 import de.tub.bdapro.adwin.core.HalfCutCheckThreadExecutorADWINImpl;
 import de.tub.bdapro.adwin.core.SequentialADWINImpl;
 import de.tub.bdapro.adwin.core.histogram.Histogram;
@@ -106,7 +106,7 @@ public class Microbenchmark {
 
     @TearDown( Level.Iteration )
     public void teardownIteration() {
-        System.out.print("<Number of ADWIN executions: " + (adwin.getAdwinCount() - adwinCount) + "> ");
+        System.out.print("<Number of Adwin cut checks performed: " + (adwin.getAdwinCount() - adwinCount) + "> ");
         adwinCount = adwin.getAdwinCount();
         numTotalInvocations += numInvocations;
         if (warmup && numTotalInvocations == warmupIterations * batchSize) {
@@ -169,7 +169,7 @@ public class Microbenchmark {
             case HALFCUT:
                 return new ADWINWrapper(delta, Histogram.class, HalfCutCheckThreadExecutorADWINImpl.class);
             case SNAPSHOT:
-                return new SnapshotThreadExecuterADWINWrapper(delta, Histogram.class, SequentialADWINImpl.class);
+                return new SnapshotThreadExecutorADWINWrapper(delta, Histogram.class, SequentialADWINImpl.class);
         }
         throw new Exception("Unknown ADWIN type");
     }

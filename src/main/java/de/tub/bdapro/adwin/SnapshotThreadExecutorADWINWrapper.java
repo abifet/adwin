@@ -17,7 +17,7 @@ import java.util.concurrent.Future;
  * <p>
  * This solution should be correct in therms of quality
  */
-public class SnapshotThreadExecuterADWINWrapper implements ADWINInterface {
+public class SnapshotThreadExecutorADWINWrapper implements ADWINInterface {
 
 
     private final ADWIN adwin;
@@ -30,7 +30,7 @@ public class SnapshotThreadExecuterADWINWrapper implements ADWINInterface {
     private int numElementsProcessed;
 
 
-    public SnapshotThreadExecuterADWINWrapper(double delta, Class<? extends Histogram> histogramClass, Class<? extends ADWIN> adwinClass) throws Exception {
+    public SnapshotThreadExecutorADWINWrapper(double delta, Class<? extends Histogram> histogramClass, Class<? extends ADWIN> adwinClass) throws Exception {
         this.histogram = (Histogram) histogramClass.getConstructors()[0].newInstance(6);
         this.adwin = (ADWIN) adwinClass.getConstructors()[0].newInstance(delta);
         this.numElementsProcessed = 0;
